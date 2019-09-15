@@ -1,0 +1,7 @@
+S = list(map(int, input().split()))
+A = max(S)
+S.remove(A)
+B = max(S)
+S.remove(B)
+C = S.pop()
+print(int(str(A) + str(B)) + C)
