@@ -1,18 +1,12 @@
-N = int(input())
-A = [list(map(int, input().split())) for _ in range(2)]
+N, M = map(int, input().split())
 
-memo = [[-1] * N for _ in range(2)]
-memo[0][0] = A[0][0]
-for i in range(2):
-    for j in range(N):
-        if i == 0:
-            if j == 0:
-                continue
-            memo[i][j] = memo[i][j-1] + A[i][j]
-        else:
-            if j == 0:
-                memo[i][j] = memo[i-1][j] + A[i][j]
-            else:
-                memo[i][j] = max(memo[i-1][j], memo[i][j-1]) + A[i][j]
-
-print(memo[1][N-1])
+ans = 0
+if N != 1 and M != 1:
+    ans = (N-2) * (M-2)
+elif N == 1 and M != 1:
+    ans = N * (M-2)
+elif N != 1 and M == 1:
+    ans = (N-2) * M
+else:
+    ans = 1
+print(ans)
