@@ -1,14 +1,23 @@
-A, B, C, X, Y = map(int, input().split())
+H, W = map(int, input().split())
+S = [list(input()) for _ in range(H)]
 
-ans = None
-n1 = A*X + B*Y
-if X > Y:
-    n2 = C * 2*Y + A * (X - Y)
-    n3 = C * 2*X
-    ans = min(n1, n2, n3)
-else:
-    n2 = C * 2*X + B * (Y - X)
-    n3 = C * 2*Y
-    ans = min(n1, n2, n3)
+d = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
-print(ans)
+for i in range(H):
+    for j in range(W):
+        if S[i][j] == ".":
+            continue
+
+        flag = False
+        for dx, dy in d:
+            i2, j2 = i+dx, j+dy
+            if not (0 <= i2 < H and 0 <= j2 < W):
+                continue
+
+            if S[i2][j2] == "#":
+                flag = True
+
+        if not flag:
+            print("No")
+            exit()
+print("Yes")
