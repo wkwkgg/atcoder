@@ -1,13 +1,8 @@
 L, R = map(int, input().split())
 
 ans = 10**9
-rng = R - L
-if rng > 2019:
-    ans = 0
-else:
-    for i in range(L, R+1):
-        for j in range(L, R+1):
-            if i != j:
-                ans = min(ans, i*j % 2019)
+for i in range(L, min(R, L+2019)+1):
+    for j in range(i+1, min(R, L+2019)+1):
+        ans = min(ans, (i % 2019) * (j % 2019) % 2019)
 
 print(ans)
